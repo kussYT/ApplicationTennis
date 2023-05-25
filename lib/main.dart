@@ -30,14 +30,14 @@ class HomePage extends StatelessWidget {
                 top: MediaQuery.of(context).size.height * 0.15,
                 left: MediaQuery.of(context).size.width * 0.10,
                 right: MediaQuery.of(context).size.width * 0.10,
-                child: const Align(
+                child: Align(
                   alignment: Alignment.center,
                   child: Wrap(
                     alignment: WrapAlignment.center,
                     crossAxisAlignment: WrapCrossAlignment.center,
-                    children: [
+                    children: const [
                       Text(
-                        'DU MATERIEL DE TENNIS',
+                        'MON APP TENNIS',
                         style: TextStyle(
                           fontSize: 30,
                           color: Colors.white,
@@ -47,16 +47,16 @@ class HomePage extends StatelessWidget {
                         maxLines: 2,
                       ),
                       SizedBox(height: 20),
-                      Text(
-                        'ADAPTÉ À VOTRE NIVEAU',
-                        style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.white,
-                          // backgroundColor: Colors.orange,
-                        ),
-                        textAlign: TextAlign.center,
-                        maxLines: 2,
-                      ),
+                      // Text(
+                      //   '',
+                      //   style: TextStyle(
+                      //     fontSize: 30,
+                      //     color: Colors.white,
+                      //     // backgroundColor: Colors.orange,
+                      //   ),
+                      //   textAlign: TextAlign.center,
+                      //   maxLines: 2,
+                      // ),
                     ],
                   ),
                 ),

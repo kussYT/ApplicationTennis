@@ -111,7 +111,7 @@ class Menu extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ComptePage()),
+                              builder: (context) => ComptePage()),
                         );
                       },
                       child: Container(
