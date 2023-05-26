@@ -30,12 +30,12 @@ class HomePage extends StatelessWidget {
                 top: MediaQuery.of(context).size.height * 0.15,
                 left: MediaQuery.of(context).size.width * 0.10,
                 right: MediaQuery.of(context).size.width * 0.10,
-                child: Align(
+                child: const Align(
                   alignment: Alignment.center,
                   child: Wrap(
                     alignment: WrapAlignment.center,
                     crossAxisAlignment: WrapCrossAlignment.center,
-                    children: const [
+                    children: [
                       Text(
                         'MON APP TENNIS',
                         style: TextStyle(

@@ -59,79 +59,115 @@ class _ReglePageState extends State<ReglePage> {
               ),
             ),
             const SizedBox(height: 20.0),
-            if (_selectedType == 'simple')
-              _buildSimpleRules(),
-            if (_selectedType == 'double')
-              _buildDoubleRules(),
+            if (_selectedType == 'simple') ..._buildSimpleRules(),
+            if (_selectedType == 'double') ..._buildDoubleRules(),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildSimpleRules() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        Text(
-          'Règles Simples',
-          style: TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-          ),
+  List<Widget> _buildSimpleRules() {
+    return [
+      const Text(
+        'Règles Simples',
+        style: TextStyle(
+          fontSize: 20.0,
+          fontWeight: FontWeight.bold,
         ),
-        SizedBox(height: 10.0),
-        ListTile(
-          leading: Icon(Icons.sports_tennis),
-          title: Text('Le match se joue en 2 sets gagnants.'),
-        ),
-        ListTile(
-          leading: Icon(Icons.sports_tennis),
-          title: Text('Chaque set se joue en premier à 6 jeux.'),
-        ),
-        ListTile(
-          leading: Icon(Icons.sports_tennis),
-          title: Text('En cas d\'égalité à 6-6, un tie-break est joué pour décider du vainqueur du set.'),
-        ),
-        // Ajoutez ici d'autres règles pour les matchs simples
-      ],
-    );
+      ),
+      const SizedBox(height: 10.0),
+      _buildRuleCard(
+        leadingIcon: Icons.sports_tennis,
+        title: 'Le match se joue en 1 contre 1',
+      ),
+      _buildRuleCard(
+        leadingIcon: Icons.sports_tennis,
+        title: 'Le match se joue en 2 sets de 6 jeux gagnants.',
+      ),
+      _buildRuleCard(
+        leadingIcon: Icons.sports_tennis,
+        title: 'Un jeu se joue en premier à 4 points et est comptabilisé de la manière suivante : 15, 30, 40, jeu.',
+      ),
+      _buildRuleCard(
+        leadingIcon: Icons.sports_tennis,
+        title: 'En cas d\'égalité à 40-40, alors le jeu se joue en avantage.',
+      ),
+      _buildRuleCard(
+        leadingIcon: Icons.sports_tennis,
+        title: 'En cas d\'égalité à 5-5, alors le set se joue en premier à 7 jeux.',
+      ),
+      _buildRuleCard(
+        leadingIcon: Icons.sports_tennis,
+        title: 'En cas d\'égalité à 6-6, un tie-break est joué pour décider du vainqueur du set.',
+      ),
+      _buildRuleCard(
+        leadingIcon: Icons.sports_tennis,
+        title: 'Le tie-break se joue en premier à 7 points.',
+      ),
+    ];
   }
 
-  Widget _buildDoubleRules() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-      Text(
-      'Règles Doubles',
-      style: TextStyle(
-        fontSize: 20.0,
-        fontWeight: FontWeight.bold,
+  List<Widget> _buildDoubleRules() {
+    return [
+      const Text(
+        'Règles Doubles',
+        style: TextStyle(
+          fontSize: 20.0,
+          fontWeight: FontWeight.bold,
+        ),
       ),
-    ),
-    SizedBox(height: 10.0),
-    ListTile(
-    leading: Icon(Icons.sports_tennis),
-    title: Text('Le match se joue en 2 sets gagnants.'),
-    ),
-    ListTile(
-    leading: Icon(Icons.sports_tennis),
-    title: Text('Chaque set se joue en premier à 6 jeux'),
-    ),
-        ListTile(
-          leading: Icon(Icons.sports_tennis),
-          title: Text('En cas d\'égalité à 6-6, un tie-break est joué pour décider du vainqueur du set.'),
+      const SizedBox(height: 10.0),
+      _buildRuleCard(
+        leadingIcon: Icons.sports_tennis,
+        title: 'Le match se joue en 2 sets de 6 jeux gagnants.',
+      ),
+      _buildRuleCard(
+        leadingIcon: Icons.sports_tennis,
+        title: 'Un jeu se joue en premier à 4 points et est comptabilisé de la manière suivante : 15, 30, 40, jeu.',
+      ),
+      _buildRuleCard(
+        leadingIcon: Icons.sports_tennis,
+        title: 'En cas d\'égalité à 40-40, alors le retourneur choisit le côté du service et le jeu se joue sur point décisif (optionnel)',
+      ),
+      _buildRuleCard(
+        leadingIcon: Icons.sports_tennis,
+        title: 'En cas d\'égalité à 6-6, un tie-break est joué pour décider du vainqueur du set.',
+      ),
+      _buildRuleCard(
+        leadingIcon: Icons.sports_tennis,
+        title: 'Les équipes se composent de deux joueurs sur chaque côté.',
+      ),
+      _buildRuleCard(
+        leadingIcon: Icons.sports_tennis,
+        title: 'Les joueurs de chaque équipe se placent de chaque côté du filet.',
+      ),
+      // Ajoutez ici d'autres règles pour les matchs doubles
+    ];
+  }
+
+  Widget _buildRuleCard({required IconData leadingIcon, required String title}) {
+    return Card(
+      child: InkWell(
+        onTap: () {
+          // Action à effectuer lors du clic sur une règle
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Row(
+            children: [
+              Icon(leadingIcon),
+              const SizedBox(width: 10.0),
+              Expanded(
+                child: Text(
+                  title,
+                  style: const TextStyle(fontSize: 16.0),
+                ),
+              ),
+            ],
+          ),
         ),
-        ListTile(
-          leading: Icon(Icons.sports_tennis),
-          title: Text('Les équipes se composent de deux joueurs sur chaque côté.'),
-        ),
-        ListTile(
-          leading: Icon(Icons.sports_tennis),
-          title: Text('Les joueurs de chaque équipe se placent de chaque côté du filet.'),
-        ),
-        // Ajoutez ici d'autres règles pour les matchs doubles
-      ],
+      ),
     );
   }
 }

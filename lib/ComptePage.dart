@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class WeatherData {
   final String main;
@@ -19,14 +21,13 @@ class WeatherData {
     return WeatherData(
       main: weather['main'],
       description: weather['description'],
-      temperature:
-          (main['temp'] - 273.15).toDouble(), // Conversion de Kelvin en Celsius
+      temperature: (main['temp'] - 273.15).toDouble(),
     );
   }
 }
 
 class ComptePage extends StatefulWidget {
-  const ComptePage({super.key});
+  const ComptePage({Key? key}) : super(key: key);
 
   @override
   _ProfilState createState() => _ProfilState();
@@ -36,6 +37,26 @@ class _ProfilState extends State<ComptePage> {
   final TextEditingController _searchController = TextEditingController();
   WeatherData? _weatherData;
   String _tennisRecommendation = '';
+
+  late SharedPreferences _prefs;
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeSharedPreferences();
+  }
+
+  Future<void> _initializeSharedPreferences() async {
+    _prefs = await SharedPreferences.getInstance();
+  }
+
+  Future<void> _setUsername(String username) async {
+    await _prefs.setString('username', username);
+  }
+
+  String? _getUsername() {
+    return _prefs.getString('username');
+  }
 
   Future<WeatherData?> fetchWeatherData(String city) async {
     const apiKey = 'a34a3e97c9260c9b6efcaab18fa37532';
@@ -77,8 +98,8 @@ class _ProfilState extends State<ComptePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: const [
+        title: const Row(
+          children: [
             Icon(Icons.sports_tennis),
             SizedBox(width: 8.0),
             Text('Tennis App'),
@@ -87,7 +108,7 @@ class _ProfilState extends State<ComptePage> {
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: RadialGradient(
-              colors: [Colors.orangeAccent, Colors.orange], // Dégradé de couleurs
+              colors: [Colors.orangeAccent, Colors.orange],
             ),
           ),
         ),
@@ -114,6 +135,9 @@ class _ProfilState extends State<ComptePage> {
                     _weatherData = weatherData;
                     _tennisRecommendation = tennisRecommendation;
                   });
+
+                  await _setUsername(
+                      city); // Enregistrer la ville dans Shared Preferences
                 }
               },
               child: const Text('Obtenir la météo'),
@@ -145,9 +169,32 @@ class _ProfilState extends State<ComptePage> {
                 ],
               ),
             const SizedBox(height: 20.0),
-            Text(
-              _tennisRecommendation,
-              style: const TextStyle(fontSize: 18.0),
+            ElevatedButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  barrierDismissible: false,
+                  // Empêche la fermeture en cliquant en dehors
+                  builder: (BuildContext context) {
+                    return CupertinoAlertDialog(
+                      title: const Text('Recommandation tennis'),
+                      content: Text(_tennisRecommendation),
+                      actions: [
+                        CupertinoDialogAction(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                            final city =
+                                _getUsername();
+                            print('Ville : $city');
+                          },
+                          child: const Text('OK'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: const Text('Obtenir la recommandation tennis'),
             ),
           ],
         ),
