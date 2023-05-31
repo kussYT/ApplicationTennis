@@ -24,7 +24,7 @@ class Menu extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ReglePage()),
+                              builder: (context) => ReglePage()),
                         );
                       },
                       child: Container(
@@ -51,7 +51,7 @@ class Menu extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ClassementPage()),
+                              builder: (context) => ClassementPage()),
                         );
                       },
                       child: Container(
@@ -84,7 +84,7 @@ class Menu extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const MaterielPage()),
+                              builder: (context) => MaterielPage()),
                         );
                       },
                       child: Container(

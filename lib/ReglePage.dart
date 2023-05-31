@@ -14,7 +14,20 @@ class _ReglePageState extends State<ReglePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Règles du Tennis'),
+        title: Row(
+          children: const [
+            Icon(Icons.sports_tennis),
+            SizedBox(width: 8.0),
+            Text('Les Règles'),
+          ],
+        ),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: RadialGradient(
+              colors: [Colors.orangeAccent, Colors.orange],
+            ),
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20.0),
@@ -87,7 +100,8 @@ class _ReglePageState extends State<ReglePage> {
       ),
       _buildRuleCard(
         leadingIcon: Icons.sports_tennis,
-        title: 'Un jeu se joue en premier à 4 points et est comptabilisé de la manière suivante : 15, 30, 40, jeu.',
+        title:
+            'Un jeu se joue en premier à 4 points et est comptabilisé de la manière suivante : 15, 30, 40, jeu.',
       ),
       _buildRuleCard(
         leadingIcon: Icons.sports_tennis,
@@ -95,11 +109,13 @@ class _ReglePageState extends State<ReglePage> {
       ),
       _buildRuleCard(
         leadingIcon: Icons.sports_tennis,
-        title: 'En cas d\'égalité à 5-5, alors le set se joue en premier à 7 jeux.',
+        title:
+            'En cas d\'égalité à 5-5, alors le set se joue en premier à 7 jeux.',
       ),
       _buildRuleCard(
         leadingIcon: Icons.sports_tennis,
-        title: 'En cas d\'égalité à 6-6, un tie-break est joué pour décider du vainqueur du set.',
+        title:
+            'En cas d\'égalité à 6-6, un tie-break est joué pour décider du vainqueur du set.',
       ),
       _buildRuleCard(
         leadingIcon: Icons.sports_tennis,
@@ -124,15 +140,18 @@ class _ReglePageState extends State<ReglePage> {
       ),
       _buildRuleCard(
         leadingIcon: Icons.sports_tennis,
-        title: 'Un jeu se joue en premier à 4 points et est comptabilisé de la manière suivante : 15, 30, 40, jeu.',
+        title:
+            'Un jeu se joue en premier à 4 points et est comptabilisé de la manière suivante : 15, 30, 40, jeu.',
       ),
       _buildRuleCard(
         leadingIcon: Icons.sports_tennis,
-        title: 'En cas d\'égalité à 40-40, alors le retourneur choisit le côté du service et le jeu se joue sur point décisif (optionnel)',
+        title:
+            'En cas d\'égalité à 40-40, alors le retourneur choisit le côté du service et le jeu se joue sur point décisif (optionnel)',
       ),
       _buildRuleCard(
         leadingIcon: Icons.sports_tennis,
-        title: 'En cas d\'égalité à 6-6, un tie-break est joué pour décider du vainqueur du set.',
+        title:
+            'En cas d\'égalité à 6-6, un tie-break est joué pour décider du vainqueur du set.',
       ),
       _buildRuleCard(
         leadingIcon: Icons.sports_tennis,
@@ -140,13 +159,15 @@ class _ReglePageState extends State<ReglePage> {
       ),
       _buildRuleCard(
         leadingIcon: Icons.sports_tennis,
-        title: 'Les joueurs de chaque équipe se placent de chaque côté du filet.',
+        title:
+            'Les joueurs de chaque équipe se placent de chaque côté du filet.',
       ),
       // Ajoutez ici d'autres règles pour les matchs doubles
     ];
   }
 
-  Widget _buildRuleCard({required IconData leadingIcon, required String title}) {
+  Widget _buildRuleCard(
+      {required IconData leadingIcon, required String title}) {
     return Card(
       child: InkWell(
         onTap: () {

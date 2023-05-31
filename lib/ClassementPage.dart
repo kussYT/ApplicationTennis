@@ -98,7 +98,20 @@ class _ClassementPageState extends State<ClassementPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Classement $_event'),
+        title: Row(
+          children: const [
+            Icon(Icons.sports_tennis),
+            SizedBox(width: 8.0),
+            Text('Classement'),
+          ],
+        ),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: RadialGradient(
+              colors: [Colors.blueAccent, Colors.blue],
+            ),
+          ),
+        ),
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -114,8 +127,7 @@ class _ClassementPageState extends State<ClassementPage> {
                   itemBuilder: (BuildContext context, int index) {
                     final player = _players[index];
                     return InkWell(
-                      onTap: () {
-                      },
+                      onTap: () {},
                       child: Card(
                         color: Colors.blue, // Couleur de fond de la carte
                         child: Padding(
@@ -173,7 +185,8 @@ class _ClassementPageState extends State<ClassementPage> {
           });
           fetchRankings();
         },
-        child: const Icon(Icons.swap_horiz),
+        backgroundColor: Colors.blueGrey,
+        child: const Icon(Icons.swap_horiz), // Couleur du bouton
       ),
     );
   }

@@ -98,8 +98,8 @@ class _ProfilState extends State<ComptePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Row(
-          children: [
+        title: Row(
+          children: const [
             Icon(Icons.sports_tennis),
             SizedBox(width: 8.0),
             Text('Tennis App'),
@@ -108,7 +108,7 @@ class _ProfilState extends State<ComptePage> {
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: RadialGradient(
-              colors: [Colors.orangeAccent, Colors.orange],
+              colors: [Colors.redAccent, Colors.red],
             ),
           ),
         ),
